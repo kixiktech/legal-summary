@@ -1,10 +1,12 @@
-import React, { useCallback, useState } from "react";
+
+import React, { useCallback, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import { ArrowLeft, FileUp, HelpCircle, AlertCircle, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { toast } from "sonner";
+
 const ACCEPTED_FILE_TYPES = {
   "application/pdf": [".pdf"],
   "application/msword": [".doc"],
@@ -15,6 +17,17 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const Upload = () => {
   const [file, setFile] = useState<File | null>(null);
   const navigate = useNavigate();
+
+  // Check if user is authenticated
+  useEffect(() => {
+    // For now, we'll simulate authentication check
+    const isAuthenticated = false; // This should be replaced with actual auth check
+    if (!isAuthenticated) {
+      toast.error("Please login or signup first");
+      navigate("/login");
+    }
+  }, [navigate]);
+
   const onDrop = useCallback((acceptedFiles: File[], rejectedFiles: any[]) => {
     if (rejectedFiles.length > 0) {
       const error = rejectedFiles[0].errors[0];
@@ -32,6 +45,7 @@ const Upload = () => {
       toast.success("File uploaded successfully!");
     }
   }, []);
+
   const {
     getRootProps,
     getInputProps,
@@ -42,17 +56,19 @@ const Upload = () => {
     maxSize: MAX_FILE_SIZE,
     multiple: false
   });
+
   const handleContinue = () => {
     if (file) {
       // TODO: Handle file upload to backend
       navigate("/processing");
     }
   };
+
   return <div className="min-h-screen bg-background p-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
-          <Link to="/login" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/dashboard" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Link>
@@ -141,4 +157,5 @@ const Upload = () => {
       </div>
     </div>;
 };
+
 export default Upload;

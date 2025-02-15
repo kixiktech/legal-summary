@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -24,10 +25,10 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link
-                to="/upload"
+                to="/signup"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
               >
-                Upload Your Deposition
+                Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
