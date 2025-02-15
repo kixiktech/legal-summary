@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, Lock, Shield, CreditCard } from "lucide-react";
@@ -9,8 +8,8 @@ import { toast } from "sonner";
 import PaymentForm from "@/components/payment/PaymentForm";
 import SecurityInfo from "@/components/payment/SecurityInfo";
 import PlanSelector from "@/components/payment/PlanSelector";
+import TestNav from "@/components/TestNav";
 
-// Initialize Stripe
 const stripePromise = loadStripe("pk_test_sample"); // Replace with your public key
 
 const Payment = () => {
@@ -27,7 +26,6 @@ const Payment = () => {
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="flex items-center justify-between mb-12">
           <Link
             to="/processing"
@@ -38,9 +36,7 @@ const Payment = () => {
           </Link>
         </div>
 
-        {/* Main Content */}
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Left Column */}
           <div className="space-y-8">
             <div className="animate-fade-up">
               <SecurityInfo />
@@ -55,7 +51,6 @@ const Payment = () => {
             </div>
           </div>
 
-          {/* Right Column */}
           <div className="animate-fade-up">
             <div className="glass-card p-8 rounded-lg">
               <Elements stripe={stripePromise}>
@@ -69,6 +64,8 @@ const Payment = () => {
             </div>
           </div>
         </div>
+
+        <TestNav />
       </div>
     </div>
   );

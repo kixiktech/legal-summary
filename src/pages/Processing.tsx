@@ -1,10 +1,10 @@
-
 import React, { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, FileText, Loader2 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import TestNav from "@/components/TestNav";
 
 const PROCESSING_TIME = 35000; // 35 seconds
 
@@ -127,6 +127,8 @@ const Processing = () => {
             Cancel Processing
           </Button>
         </div>
+
+        <TestNav />
       </div>
     </div>
   );

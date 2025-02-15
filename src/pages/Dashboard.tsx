@@ -8,8 +8,8 @@ import SummaryCard from "@/components/dashboard/SummaryCard";
 import EmptyState from "@/components/dashboard/EmptyState";
 import ProfileCard from "@/components/dashboard/ProfileCard";
 import type { Summary } from "@/types/dashboard";
+import TestNav from "@/components/TestNav";
 
-// Mock data - replace with actual API call
 const mockSummaries: Summary[] = [
   {
     id: "1",
@@ -79,7 +79,6 @@ const Dashboard = () => {
           </div>
 
           <TabsContent value="summaries" className="space-y-6">
-            {/* Latest Summary Section */}
             {latestSummary && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -94,7 +93,6 @@ const Dashboard = () => {
               </div>
             )}
 
-            {/* Filter Controls */}
             {summaries.length > 1 && (
               <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                 <div className="relative flex-1 max-w-md">
@@ -127,7 +125,6 @@ const Dashboard = () => {
               </div>
             )}
 
-            {/* Summaries Content */}
             <div className="space-y-4">
               {summaries.length <= 1 ? (
                 <EmptyState />
@@ -161,6 +158,7 @@ const Dashboard = () => {
             <ProfileCard />
           </TabsContent>
         </Tabs>
+        <TestNav />
       </div>
     </div>
   );
