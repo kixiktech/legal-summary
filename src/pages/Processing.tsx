@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, FileText, Loader2 } from "lucide-react";
@@ -19,59 +20,54 @@ const Processing = () => {
   const [messageIndex, setMessageIndex] = useState(0);
   const navigate = useNavigate();
 
-  // Memoize the completion handler
   const handleCompletion = useCallback(() => {
     toast.success("Analysis complete!");
     setTimeout(() => navigate("/payment"), 1000);
   }, [navigate]);
 
   useEffect(() => {
-    let mounted = true;
     const startTime = Date.now();
-    let timeoutId: number;
+    let timeoutId: NodeJS.Timeout | null = null;
+    let isActive = true;
 
     const updateProgress = () => {
-      if (!mounted) return;
+      if (!isActive) return;
 
       const elapsed = Date.now() - startTime;
-      const newProgress = Math.min((elapsed / PROCESSING_TIME) * 100, 100);
+      const calculatedProgress = Math.min((elapsed / PROCESSING_TIME) * 100, 100);
       
       console.log('Progress update:', {
         elapsed,
-        newProgress,
+        calculatedProgress,
         startTime,
-        now: Date.now(),
-        mounted
+        now: Date.now()
       });
       
-      setProgress(newProgress);
-      
-      // Update message based on progress
-      const newMessageIndex = Math.floor((newProgress / 100) * ProcessingMessages.length);
-      if (newMessageIndex !== messageIndex && newMessageIndex < ProcessingMessages.length) {
-        setMessageIndex(newMessageIndex);
-      }
+      setProgress(calculatedProgress);
 
-      if (newProgress < 100 && mounted) {
-        timeoutId = window.setTimeout(updateProgress, 50); // Update every 50ms
-      } else if (newProgress >= 100 && mounted) {
-        console.log('Processing complete');
+      // Update message based on progress
+      const newMessageIndex = Math.min(
+        Math.floor((calculatedProgress / 100) * ProcessingMessages.length),
+        ProcessingMessages.length - 1
+      );
+      setMessageIndex(newMessageIndex);
+
+      if (calculatedProgress < 100) {
+        timeoutId = setTimeout(updateProgress, 100);
+      } else if (isActive) {
         handleCompletion();
       }
     };
 
-    // Start the progress update
-    timeoutId = window.setTimeout(updateProgress, 50);
+    timeoutId = setTimeout(updateProgress, 100);
 
-    // Cleanup function
     return () => {
-      console.log('Cleaning up timeouts');
-      mounted = false;
+      isActive = false;
       if (timeoutId) {
-        window.clearTimeout(timeoutId);
+        clearTimeout(timeoutId);
       }
     };
-  }, [handleCompletion, messageIndex]);
+  }, [handleCompletion]);
 
   const handleCancel = () => {
     if (confirm("Are you sure you want to cancel the processing?")) {
@@ -130,33 +126,6 @@ const Processing = () => {
           >
             Cancel Processing
           </Button>
-
-          <div className="w-full max-w-2xl p-4 glass-card rounded-lg animate-fade-up">
-            <h3 className="text-sm font-medium mb-4">Testing Navigation</h3>
-            <div className="flex flex-wrap gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => navigate("/upload")}
-              >
-                Back to Upload
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => navigate("/payment")}
-              >
-                Skip to Payment
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => navigate("/dashboard")}
-              >
-                Go to Dashboard
-              </Button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
