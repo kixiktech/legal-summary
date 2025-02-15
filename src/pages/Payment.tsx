@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, CheckCircle2, LockClosedIcon, Shield, CreditCard } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Lock, Shield, CreditCard } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { Button } from "@/components/ui/button";

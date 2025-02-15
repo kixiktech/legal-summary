@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Shield, LockClosedIcon, CheckCircle2 } from "lucide-react";
+import { Shield, Lock, CheckCircle2 } from "lucide-react";
 
 const SecurityInfo = () => {
   return (
@@ -21,7 +21,7 @@ const SecurityInfo = () => {
         </div>
 
         <div className="flex items-start gap-3">
-          <LockClosedIcon className="h-5 w-5 text-primary mt-1" />
+          <Lock className="h-5 w-5 text-primary mt-1" />
           <div>
             <h3 className="font-medium mb-1">Safe & Secure</h3>
             <p className="text-sm text-muted-foreground">
