@@ -29,6 +29,13 @@ const Processing = () => {
       const elapsed = Date.now() - startTime;
       const newProgress = Math.min((elapsed / PROCESSING_TIME) * 100, 100);
       
+      console.log('Progress update:', {
+        elapsed,
+        newProgress,
+        startTime,
+        now: Date.now()
+      });
+      
       setProgress(newProgress);
       
       // Update message based on progress
@@ -40,20 +47,24 @@ const Processing = () => {
       if (newProgress < 100) {
         animationFrameId = requestAnimationFrame(updateProgress);
       } else {
+        console.log('Processing complete');
         // Processing complete
         toast.success("Analysis complete!");
         setTimeout(() => navigate("/payment"), 1000);
       }
     };
 
+    // Start the animation immediately
     animationFrameId = requestAnimationFrame(updateProgress);
 
+    // Cleanup function
     return () => {
+      console.log('Cleaning up animation');
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
     };
-  }, [messageIndex, navigate]);
+  }, []); // Remove messageIndex and navigate from dependencies
 
   const handleCancel = () => {
     if (confirm("Are you sure you want to cancel the processing?")) {
