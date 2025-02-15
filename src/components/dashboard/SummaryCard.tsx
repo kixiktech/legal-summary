@@ -23,27 +23,29 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ summary, onDownload }) => {
   });
 
   return (
-    <Card className="glass-card flex items-center justify-between p-4 animate-fade-up">
-      <div className="flex items-center gap-4">
-        <div className="p-2 bg-muted rounded-lg">
-          <FileText className="h-6 w-6 text-primary" />
+    <Card className="glass-card overflow-hidden">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 gap-4">
+        <div className="flex items-start sm:items-center gap-4">
+          <div className="p-2 bg-muted rounded-lg shrink-0">
+            <FileText className="h-6 w-6 text-primary" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <h3 className="font-medium truncate">{summary.fileName}</h3>
+            <p className="text-sm text-muted-foreground">
+              {formattedDate} at {formattedTime} • {summary.pageCount} pages
+            </p>
+          </div>
         </div>
-        <div>
-          <h3 className="font-medium">{summary.fileName}</h3>
-          <p className="text-sm text-muted-foreground">
-            {formattedDate} at {formattedTime} • {summary.pageCount} pages
-          </p>
-        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full sm:w-auto"
+          onClick={() => onDownload(summary)}
+        >
+          <Download className="h-4 w-4 mr-2" />
+          Download
+        </Button>
       </div>
-      <Button
-        variant="outline"
-        size="sm"
-        className="ml-4"
-        onClick={() => onDownload(summary)}
-      >
-        <Download className="h-4 w-4 mr-2" />
-        Download
-      </Button>
     </Card>
   );
 };

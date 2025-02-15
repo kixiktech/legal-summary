@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SummaryCard from "@/components/dashboard/SummaryCard";
 import EmptyState from "@/components/dashboard/EmptyState";
+import ProfileCard from "@/components/dashboard/ProfileCard";
 import type { Summary } from "@/types/dashboard";
 
 // Mock data - replace with actual API call
@@ -51,35 +52,44 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container py-8 space-y-8">
+      <div className="container py-4 md:py-8 px-4 md:px-8 space-y-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <h1 className="text-3xl font-bold tracking-tight">My Summaries</h1>
-          <Button asChild>
-            <Link to="/upload">
-              <Plus className="mr-2 h-4 w-4" />
-              New Summary
-            </Link>
-          </Button>
+        <div className="flex flex-col gap-4 md:flex-row md:items-start">
+          <div className="flex-1 space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <h1 className="text-2xl md:text-3xl font-bold tracking-tight">My Summaries</h1>
+              <Button asChild className="w-full sm:w-auto">
+                <Link to="/upload">
+                  <Plus className="mr-2 h-4 w-4" />
+                  New Summary
+                </Link>
+              </Button>
+            </div>
+
+            {/* Search */}
+            {summaries.length > 0 && (
+              <div className="w-full">
+                <div className="relative max-w-md">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search summaries..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-9 bg-card/50"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Profile Card - Hidden on mobile, shown in sidebar on desktop */}
+          <div className="hidden md:block w-72">
+            <ProfileCard />
+          </div>
         </div>
 
-        {/* Search and Filters */}
-        {summaries.length > 0 && (
-          <div className="flex items-center gap-4">
-            <div className="relative flex-1 max-w-sm">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search summaries..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9"
-              />
-            </div>
-          </div>
-        )}
-
         {/* Content */}
-        <div className="space-y-4">
+        <div className="space-y-4 pb-20 md:pb-0">
           {summaries.length === 0 ? (
             <EmptyState />
           ) : filteredSummaries.length === 0 ? (
@@ -95,6 +105,11 @@ const Dashboard = () => {
               />
             ))
           )}
+        </div>
+
+        {/* Mobile Profile Button - Shown only on mobile */}
+        <div className="fixed bottom-0 left-0 right-0 md:hidden bg-background/80 backdrop-blur-lg border-t border-border p-4">
+          <ProfileCard />
         </div>
       </div>
     </div>
