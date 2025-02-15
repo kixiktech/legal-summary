@@ -30,12 +30,6 @@ const Index = () => {
                 Upload Your Deposition
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-              <Link
-                to="#features"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-base font-medium text-foreground bg-secondary rounded-md hover:bg-secondary/90 transition-colors"
-              >
-                Learn More
-              </Link>
             </div>
           </div>
         </div>
