@@ -23,6 +23,7 @@ const loginSchema = z.object({
 });
 
 const signupSchema = loginSchema.extend({
+  name: z.string().min(2, "Name must be at least 2 characters"),
   confirmPassword: z.string(),
 }).refine(data => data.password === data.confirmPassword, {
   message: "Passwords don't match",
@@ -40,6 +41,7 @@ const Auth = () => {
   const form = useForm<LoginFormData | SignupFormData>({
     resolver: zodResolver(isLogin ? loginSchema : signupSchema),
     defaultValues: {
+      ...(isLogin ? {} : { name: "" }),
       email: "",
       password: "",
       ...(isLogin ? {} : { confirmPassword: "" }),
@@ -124,6 +126,25 @@ const Auth = () => {
           <div className="glass-card p-8 rounded-lg">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                {!isLogin && (
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter your name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+
                 <FormField
                   control={form.control}
                   name="email"
