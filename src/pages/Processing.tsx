@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, FileText, Loader2 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
@@ -7,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 const PROCESSING_TIME = 35000; // 35 seconds
-const UPDATE_INTERVAL = 50; // Update every 50ms for smooth animation
 
 const ProcessingMessages = [
   "Analyzing document structure...",
@@ -21,11 +19,20 @@ const Processing = () => {
   const [messageIndex, setMessageIndex] = useState(0);
   const navigate = useNavigate();
 
+  // Memoize the completion handler
+  const handleCompletion = useCallback(() => {
+    toast.success("Analysis complete!");
+    setTimeout(() => navigate("/payment"), 1000);
+  }, [navigate]);
+
   useEffect(() => {
+    let mounted = true;
     const startTime = Date.now();
-    let animationFrameId: number;
+    let timeoutId: number;
 
     const updateProgress = () => {
+      if (!mounted) return;
+
       const elapsed = Date.now() - startTime;
       const newProgress = Math.min((elapsed / PROCESSING_TIME) * 100, 100);
       
@@ -33,7 +40,8 @@ const Processing = () => {
         elapsed,
         newProgress,
         startTime,
-        now: Date.now()
+        now: Date.now(),
+        mounted
       });
       
       setProgress(newProgress);
@@ -44,27 +52,26 @@ const Processing = () => {
         setMessageIndex(newMessageIndex);
       }
 
-      if (newProgress < 100) {
-        animationFrameId = requestAnimationFrame(updateProgress);
-      } else {
+      if (newProgress < 100 && mounted) {
+        timeoutId = window.setTimeout(updateProgress, 50); // Update every 50ms
+      } else if (newProgress >= 100 && mounted) {
         console.log('Processing complete');
-        // Processing complete
-        toast.success("Analysis complete!");
-        setTimeout(() => navigate("/payment"), 1000);
+        handleCompletion();
       }
     };
 
-    // Start the animation immediately
-    animationFrameId = requestAnimationFrame(updateProgress);
+    // Start the progress update
+    timeoutId = window.setTimeout(updateProgress, 50);
 
     // Cleanup function
     return () => {
-      console.log('Cleaning up animation');
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
+      console.log('Cleaning up timeouts');
+      mounted = false;
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
       }
     };
-  }, []); // Remove messageIndex and navigate from dependencies
+  }, [handleCompletion, messageIndex]);
 
   const handleCancel = () => {
     if (confirm("Are you sure you want to cancel the processing?")) {
@@ -75,7 +82,6 @@ const Processing = () => {
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
         <div className="flex items-center justify-between mb-12">
           <Link
             to="/upload"
@@ -86,9 +92,7 @@ const Processing = () => {
           </Link>
         </div>
 
-        {/* Main Content */}
         <div className="flex flex-col items-center justify-center space-y-8">
-          {/* Icon and Animation */}
           <div className="relative">
             <FileText className="w-16 h-16 text-primary opacity-20" />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -96,7 +100,6 @@ const Processing = () => {
             </div>
           </div>
 
-          {/* Status */}
           <div className="text-center space-y-4 animate-fade-up">
             <h1 className="text-2xl font-bold tracking-tight">
               {ProcessingMessages[messageIndex]}
@@ -106,7 +109,6 @@ const Processing = () => {
             </p>
           </div>
 
-          {/* Progress Bar */}
           <div className="w-full space-y-4 animate-fade-up">
             <Progress value={progress} className="h-2" />
             <p className="text-sm text-muted-foreground text-center">
@@ -114,7 +116,6 @@ const Processing = () => {
             </p>
           </div>
 
-          {/* Info Card */}
           <div className="glass-card rounded-lg p-6 text-center max-w-xl animate-fade-up">
             <p className="text-muted-foreground">
               Our AI is carefully analyzing your deposition, extracting key information
@@ -122,7 +123,6 @@ const Processing = () => {
             </p>
           </div>
 
-          {/* Cancel Button */}
           <Button
             variant="ghost"
             className="text-muted-foreground hover:text-foreground"
@@ -131,7 +131,6 @@ const Processing = () => {
             Cancel Processing
           </Button>
 
-          {/* Testing Navigation */}
           <div className="w-full max-w-2xl p-4 glass-card rounded-lg animate-fade-up">
             <h3 className="text-sm font-medium mb-4">Testing Navigation</h3>
             <div className="flex flex-wrap gap-4">
