@@ -1,4 +1,3 @@
-
 import React, { useCallback, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
@@ -18,15 +17,14 @@ const Upload = () => {
   const [file, setFile] = useState<File | null>(null);
   const navigate = useNavigate();
 
-  // Check if user is authenticated
-  useEffect(() => {
-    // For now, we'll simulate authentication check
-    const isAuthenticated = false; // This should be replaced with actual auth check
-    if (!isAuthenticated) {
-      toast.error("Please login or signup first");
-      navigate("/login");
-    }
-  }, [navigate]);
+  // Removing authentication check for testing purposes
+  // useEffect(() => {
+  //   const isAuthenticated = false;
+  //   if (!isAuthenticated) {
+  //     toast.error("Please login or signup first");
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   const onDrop = useCallback((acceptedFiles: File[], rejectedFiles: any[]) => {
     if (rejectedFiles.length > 0) {
@@ -59,7 +57,6 @@ const Upload = () => {
 
   const handleContinue = () => {
     if (file) {
-      // TODO: Handle file upload to backend
       navigate("/processing");
     }
   };
@@ -139,9 +136,21 @@ const Upload = () => {
             </Button>}
 
           {/* Testing Navigation */}
-          <div className="w-full max-w-2xl p-4 glass-card rounded-lg animate-fade-up">
-            <h3 className="text-sm font-medium mb-4">Testing Navigation</h3>
+          <div className="w-full max-w-2xl p-4 glass-card rounded-lg animate-fade-up mt-8">
+            <h3 className="text-sm font-medium mb-4">Testing Navigation (Dev Only)</h3>
             <div className="flex flex-wrap gap-4">
+              <Button variant="outline" size="sm" onClick={() => navigate("/")}>
+                Go to Home
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => navigate("/login")}>
+                Go to Login
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => navigate("/signup")}>
+                Go to Signup
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => navigate("/upload")}>
+                Go to Upload
+              </Button>
               <Button variant="outline" size="sm" onClick={() => navigate("/processing")}>
                 Go to Processing
               </Button>
