@@ -114,10 +114,7 @@ const Upload = () => {
 
           {/* Benefits */}
           <div className="glass-card rounded-lg p-6 text-center max-w-xl">
-            <p className="text-muted-foreground">Fear not! We are built on Bank-Level encryption databases so your documents are protected.
-
-
-Experience our expert AI-powered analysis and see the difference it makes in your case preparation.</p>
+            <p className="text-muted-foreground font-normal">Fear not! We are built on Bank-Level encryption databases so your documents are safe and protected. Experience our expert AI-powered analysis and see the difference it makes in your case preparation.</p>
           </div>
 
           {/* Continue Button */}
