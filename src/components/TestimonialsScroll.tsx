@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
@@ -152,12 +151,9 @@ const TestimonialsScroll = () => {
         <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black via-black/90 to-transparent z-10" />
         
         {/* Scrolling Track */}
-        <div className="flex">
+        <div className="flex animate-carousel">
           {/* First Track */}
-          <div 
-            className="flex animate-marquee whitespace-nowrap"
-            style={{ animationDuration: '120s' }}
-          >
+          <div className="flex shrink-0">
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
@@ -195,10 +191,7 @@ const TestimonialsScroll = () => {
           </div>
           
           {/* Second Track (Duplicate) */}
-          <div 
-            className="flex animate-marquee2 whitespace-nowrap"
-            style={{ animationDuration: '120s' }}
-          >
+          <div className="flex shrink-0">
             {testimonials.map((testimonial) => (
               <div
                 key={`${testimonial.id}-clone`}
