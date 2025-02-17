@@ -134,51 +134,61 @@ const testimonials: Testimonial[] = [
 
 const TestimonialsScroll = () => {
   return (
-    <div className="w-full bg-black/50 py-20 overflow-hidden">
-      <div className="container px-6 mx-auto mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-4">
+    <div className="w-full bg-black/95 py-20 overflow-hidden">
+      <div className="container px-6 mx-auto mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-6 text-white">
           What Our Users Say
         </h2>
-        <p className="text-muted-foreground text-lg text-center max-w-2xl mx-auto">
+        <p className="text-gray-400 text-lg text-center max-w-2xl mx-auto">
           Join thousands of legal professionals who trust our platform
         </p>
       </div>
       
-      <div className="relative w-full">
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+      <div className="relative w-full mx-auto max-w-[95vw]">
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black/95 to-transparent z-10" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black/95 to-transparent z-10" />
         
         <div className="relative flex overflow-x-hidden">
-          <div className="flex gap-6 animate-marquee whitespace-nowrap">
+          <div className="flex gap-8 animate-marquee whitespace-nowrap py-4">
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="flex-none w-[400px] p-6 glass-card rounded-xl"
+                className="flex-none w-[450px] p-8 bg-black/50 backdrop-blur-sm rounded-xl border border-white/10"
               >
-                <p className="text-lg mb-6 text-white/90">"{testimonial.quote}"</p>
-                <div className="flex items-center gap-3">
-                  <Avatar>
+                <p className="text-lg mb-8 text-gray-300 leading-relaxed">"{testimonial.quote}"</p>
+                <div className="flex items-center gap-4">
+                  <Avatar className="h-12 w-12 border-2 border-primary/20">
                     <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                    <AvatarFallback>{testimonial.author[0]}</AvatarFallback>
+                    <AvatarFallback className="bg-primary/10 text-primary">
+                      {testimonial.author[0]}
+                    </AvatarFallback>
                   </Avatar>
-                  <span className="font-medium text-primary">{testimonial.author}</span>
+                  <div className="flex flex-col">
+                    <span className="font-medium text-primary">{testimonial.author}</span>
+                    <span className="text-sm text-gray-400">{testimonial.author.split(',')[1]?.trim()}</span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex gap-6 animate-marquee2 whitespace-nowrap">
+          <div className="flex gap-8 animate-marquee2 whitespace-nowrap py-4">
             {testimonials.map((testimonial) => (
               <div
                 key={`${testimonial.id}-clone`}
-                className="flex-none w-[400px] p-6 glass-card rounded-xl"
+                className="flex-none w-[450px] p-8 bg-black/50 backdrop-blur-sm rounded-xl border border-white/10"
               >
-                <p className="text-lg mb-6 text-white/90">"{testimonial.quote}"</p>
-                <div className="flex items-center gap-3">
-                  <Avatar>
+                <p className="text-lg mb-8 text-gray-300 leading-relaxed">"{testimonial.quote}"</p>
+                <div className="flex items-center gap-4">
+                  <Avatar className="h-12 w-12 border-2 border-primary/20">
                     <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                    <AvatarFallback>{testimonial.author[0]}</AvatarFallback>
+                    <AvatarFallback className="bg-primary/10 text-primary">
+                      {testimonial.author[0]}
+                    </AvatarFallback>
                   </Avatar>
-                  <span className="font-medium text-primary">{testimonial.author}</span>
+                  <div className="flex flex-col">
+                    <span className="font-medium text-primary">{testimonial.author}</span>
+                    <span className="text-sm text-gray-400">{testimonial.author.split(',')[1]?.trim()}</span>
+                  </div>
                 </div>
               </div>
             ))}
