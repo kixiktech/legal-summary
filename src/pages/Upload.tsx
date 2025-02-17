@@ -1,3 +1,4 @@
+
 import React, { useCallback, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
@@ -5,6 +6,8 @@ import { ArrowLeft, FileUp, HelpCircle, AlertCircle, CheckCircle2 } from "lucide
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
 
 const ACCEPTED_FILE_TYPES = {
   "application/pdf": [".pdf"],
@@ -16,15 +19,14 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const Upload = () => {
   const [file, setFile] = useState<File | null>(null);
   const navigate = useNavigate();
+  const { session } = useAuth();
 
-  // Removing authentication check for testing purposes
-  // useEffect(() => {
-  //   const isAuthenticated = false;
-  //   if (!isAuthenticated) {
-  //     toast.error("Please login or signup first");
-  //     navigate("/login");
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+    if (!session) {
+      toast.error("Please login or signup first");
+      navigate("/login");
+    }
+  }, [session, navigate]);
 
   const onDrop = useCallback((acceptedFiles: File[], rejectedFiles: any[]) => {
     if (rejectedFiles.length > 0) {
@@ -44,20 +46,43 @@ const Upload = () => {
     }
   }, []);
 
-  const {
-    getRootProps,
-    getInputProps,
-    isDragActive
-  } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: ACCEPTED_FILE_TYPES,
     maxSize: MAX_FILE_SIZE,
     multiple: false
   });
 
-  const handleContinue = () => {
-    if (file) {
+  const handleContinue = async () => {
+    if (!file || !session?.user) return;
+
+    try {
+      // Upload file to Supabase Storage
+      const fileExt = file.name.split('.').pop();
+      const filePath = `${session.user.id}/${crypto.randomUUID()}.${fileExt}`;
+      
+      const { error: uploadError } = await supabase.storage
+        .from('legal_docs')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      // Create summary record
+      const { error: dbError } = await supabase
+        .from('summaries')
+        .insert({
+          file_name: file.name,
+          user_id: session.user.id,
+          page_count: 1, // This should be calculated from the actual document
+          status: 'processing',
+          original_file_path: filePath,
+        });
+
+      if (dbError) throw dbError;
+
       navigate("/processing");
+    } catch (error: any) {
+      toast.error(error.message || "Error uploading file");
     }
   };
 

@@ -1,14 +1,55 @@
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { CreditCard, LogOut, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 const ProfileCard = () => {
-  const handleLogout = () => {
-    // Implement logout logic here
-    console.log("Logging out...");
+  const { session } = useAuth();
+  const navigate = useNavigate();
+  const [profile, setProfile] = useState<{ name: string | null, email: string | null }>({
+    name: null,
+    email: null,
+  });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!session?.user?.id) return;
+
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('name, email')
+        .eq('id', session.user.id)
+        .single();
+
+      if (error) {
+        console.error('Error fetching profile:', error);
+        return;
+      }
+
+      setProfile({
+        name: data.name || session.user.email?.split('@')[0] || 'User',
+        email: data.email || session.user.email || '',
+      });
+    };
+
+    fetchProfile();
+  }, [session]);
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      
+      toast.success("Successfully logged out");
+      navigate("/login");
+    } catch (error: any) {
+      toast.error(error.message || "Error logging out");
+    }
   };
 
   return (
@@ -16,8 +57,8 @@ const ProfileCard = () => {
       <div className="flex items-center gap-3 mb-3">
         <UserCircle className="h-10 w-10 text-primary" />
         <div className="flex-1">
-          <h3 className="font-medium">John Doe</h3>
-          <p className="text-sm text-muted-foreground">lawyer@example.com</p>
+          <h3 className="font-medium">{profile.name}</h3>
+          <p className="text-sm text-muted-foreground">{profile.email}</p>
         </div>
       </div>
       <div className="space-y-2">

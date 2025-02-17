@@ -3,7 +3,9 @@ import React from "react";
 import { FileText, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import type { Summary } from "@/types/dashboard";
+import { Database } from "@/integrations/supabase/types";
+
+type Summary = Database['public']['Tables']['summaries']['Row'];
 
 interface SummaryCardProps {
   summary: Summary;
@@ -11,7 +13,7 @@ interface SummaryCardProps {
 }
 
 const SummaryCard: React.FC<SummaryCardProps> = ({ summary, onDownload }) => {
-  const date = new Date(summary.uploadDate);
+  const date = new Date(summary.created_at);
   const formattedDate = date.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
@@ -30,9 +32,9 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ summary, onDownload }) => {
             <FileText className="h-6 w-6 text-primary" />
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="font-medium truncate">{summary.fileName}</h3>
+            <h3 className="font-medium truncate">{summary.file_name}</h3>
             <p className="text-sm text-muted-foreground">
-              {formattedDate} at {formattedTime} • {summary.pageCount} pages
+              {formattedDate} at {formattedTime} • {summary.page_count} pages
             </p>
           </div>
         </div>

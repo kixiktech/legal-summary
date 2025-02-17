@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -14,9 +15,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { ArrowLeft } from "lucide-react";
-import TestNav from "@/components/TestNav";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
-// Form validation schemas
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -36,8 +38,14 @@ type SignupFormData = z.infer<typeof signupSchema>;
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
+  const { session } = useAuth();
 
-  // Initialize form with the appropriate schema
+  useEffect(() => {
+    if (session) {
+      navigate("/dashboard");
+    }
+  }, [session, navigate]);
+
   const form = useForm<LoginFormData | SignupFormData>({
     resolver: zodResolver(isLogin ? loginSchema : signupSchema),
     defaultValues: {
@@ -48,15 +56,39 @@ const Auth = () => {
     },
   });
 
-  // Form submission handler
   const onSubmit = async (data: LoginFormData | SignupFormData) => {
-    console.log("Form submitted:", data);
-    // TODO: Integrate with backend
-    // For testing: Navigate to upload page
-    navigate("/upload");
+    try {
+      if (isLogin) {
+        const { error } = await supabase.auth.signInWithPassword({
+          email: data.email,
+          password: data.password,
+        });
+        
+        if (error) throw error;
+        
+        toast.success("Successfully logged in!");
+        navigate("/dashboard");
+      } else {
+        const { error } = await supabase.auth.signUp({
+          email: data.email,
+          password: data.password,
+          options: {
+            data: {
+              name: (data as SignupFormData).name,
+            },
+          },
+        });
+        
+        if (error) throw error;
+        
+        toast.success("Successfully signed up! Please check your email for verification.");
+        navigate("/dashboard");
+      }
+    } catch (error: any) {
+      toast.error(error.message || "An error occurred during authentication");
+    }
   };
 
-  // Toggle between login and signup
   const toggleMode = () => {
     setIsLogin(!isLogin);
     form.reset();
