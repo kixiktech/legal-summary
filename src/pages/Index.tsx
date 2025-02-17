@@ -1,8 +1,10 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { ArrowRight, FileText, Shield, Zap, Check } from "lucide-react";
 import TestNav from "@/components/TestNav";
+
 const Index = () => {
   return <div className="min-h-screen">
       <Navbar />
@@ -174,4 +176,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;
