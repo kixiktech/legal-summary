@@ -1,11 +1,18 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { ArrowRight, FileText, Shield, Zap, Check } from "lucide-react";
 import TestNav from "@/components/TestNav";
 
 const Index = () => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
+
   return <div className="min-h-screen">
       <Navbar />
       
@@ -161,12 +168,18 @@ const Index = () => {
               © 2024 LegalSummarize. All rights reserved.
             </p>
             <div className="flex items-center space-x-6">
-              <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <button 
+                onClick={() => handleNavigation('/privacy')} 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
                 Privacy
-              </Link>
-              <Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              </button>
+              <button 
+                onClick={() => handleNavigation('/terms')} 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
                 Terms
-              </Link>
+              </button>
               <Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </Link>
