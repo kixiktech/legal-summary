@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import { ArrowRight, FileText, Shield, Zap, Check, Gavel } from "lucide-react";
+import { ArrowRight, FileText, Shield, Zap, Check, Balance } from "lucide-react";
 import TestNav from "@/components/TestNav";
 
 const Index = () => {
@@ -23,7 +23,7 @@ const Index = () => {
               Revolutionizing Legal Document Processing
             </div>
             <div className="inline-flex items-center justify-center p-4 rounded-full bg-primary/10 mb-6">
-              <Gavel className="h-12 w-12 text-primary" strokeWidth={1.5} />
+              <Balance className="h-12 w-12 text-primary" strokeWidth={1.5} />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-balance relative animate-fade-up group">
               Transform Hours of Deposition Reading into{" "}
