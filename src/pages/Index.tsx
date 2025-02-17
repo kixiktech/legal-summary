@@ -1,8 +1,8 @@
-
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { ArrowRight, FileText, Shield, Zap, Check, Scale } from "lucide-react";
+import TestimonialsScroll from "@/components/TestimonialsScroll";
 import TestNav from "@/components/TestNav";
 
 const Index = () => {
@@ -86,6 +86,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <TestimonialsScroll />
 
       {/* Pricing Section */}
       <section id="pricing" className="py-20 md:py-32">
