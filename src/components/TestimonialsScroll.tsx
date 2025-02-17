@@ -133,9 +133,6 @@ const testimonials: Testimonial[] = [
 ];
 
 const TestimonialsScroll = () => {
-  // Duplicate testimonials multiple times to ensure smooth continuous scroll
-  const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
-
   return (
     <div className="w-full bg-black/50 py-20 overflow-hidden">
       <div className="container px-6 mx-auto mb-12">
@@ -151,22 +148,41 @@ const TestimonialsScroll = () => {
         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
         
-        <div className="flex gap-6 animate-marquee">
-          {duplicatedTestimonials.map((testimonial, index) => (
-            <div
-              key={`${testimonial.id}-${index}`}
-              className="flex-none w-[400px] p-6 glass-card rounded-xl"
-            >
-              <p className="text-lg mb-6 text-white/90">"{testimonial.quote}"</p>
-              <div className="flex items-center gap-3">
-                <Avatar>
-                  <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                  <AvatarFallback>{testimonial.author[0]}</AvatarFallback>
-                </Avatar>
-                <span className="font-medium text-primary">{testimonial.author}</span>
+        <div className="relative flex overflow-x-hidden">
+          <div className="flex gap-6 animate-marquee whitespace-nowrap">
+            {testimonials.map((testimonial) => (
+              <div
+                key={testimonial.id}
+                className="flex-none w-[400px] p-6 glass-card rounded-xl"
+              >
+                <p className="text-lg mb-6 text-white/90">"{testimonial.quote}"</p>
+                <div className="flex items-center gap-3">
+                  <Avatar>
+                    <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                    <AvatarFallback>{testimonial.author[0]}</AvatarFallback>
+                  </Avatar>
+                  <span className="font-medium text-primary">{testimonial.author}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="flex gap-6 animate-marquee2 whitespace-nowrap">
+            {testimonials.map((testimonial) => (
+              <div
+                key={`${testimonial.id}-clone`}
+                className="flex-none w-[400px] p-6 glass-card rounded-xl"
+              >
+                <p className="text-lg mb-6 text-white/90">"{testimonial.quote}"</p>
+                <div className="flex items-center gap-3">
+                  <Avatar>
+                    <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                    <AvatarFallback>{testimonial.author[0]}</AvatarFallback>
+                  </Avatar>
+                  <span className="font-medium text-primary">{testimonial.author}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
