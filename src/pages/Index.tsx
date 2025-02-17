@@ -17,15 +17,10 @@ const Index = () => {
               Revolutionizing Legal Document Processing
             </div>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-balance relative animate-fade-up group">
-              Transform Hours of 
-              <span className="bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent transition-all duration-300 mx-2">
-                Deposition Reading
+              Transform Hours of Deposition Reading into{" "}
+              <span className="bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent transition-all duration-300">
+                Instant Case-Winning Insights
               </span>
-              into
-              <span className="bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent transition-all duration-300 mx-2">
-                Case-Winning Insights
-              </span>
-              <span className="text-primary font-light">--Fast</span>
               <div className="absolute -inset-x-4 -inset-y-2 bg-primary/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-lg -z-10"></div>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
