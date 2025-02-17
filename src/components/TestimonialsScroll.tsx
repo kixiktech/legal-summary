@@ -134,68 +134,95 @@ const testimonials: Testimonial[] = [
 
 const TestimonialsScroll = () => {
   return (
-    <div className="w-full bg-black/95 py-20 overflow-hidden">
-      <div className="container px-6 mx-auto mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-6 text-white">
-          What Our Users Say
-        </h2>
-        <p className="text-gray-400 text-lg text-center max-w-2xl mx-auto">
-          Join thousands of legal professionals who trust our platform
-        </p>
+    <section className="relative w-full bg-gradient-to-b from-black to-black/90 py-24">
+      <div className="container mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto px-4">
+          <h2 className="text-4xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
+            What Our Users Say
+          </h2>
+          <p className="text-lg text-gray-400">
+            Join thousands of legal professionals who trust our platform
+          </p>
+        </div>
       </div>
       
-      <div className="relative w-full mx-auto max-w-[95vw]">
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black/95 to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black/95 to-transparent z-10" />
+      <div className="relative w-full">
+        {/* Gradient Overlays */}
+        <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black via-black/90 to-transparent z-10" />
+        <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black via-black/90 to-transparent z-10" />
         
-        <div className="relative flex overflow-x-hidden">
-          <div className="flex gap-8 animate-marquee whitespace-nowrap py-4">
+        {/* Scrolling Content */}
+        <div className="relative flex overflow-x-hidden mx-auto">
+          {/* First scroll instance */}
+          <div className="flex animate-marquee whitespace-nowrap">
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="flex-none w-[450px] p-8 bg-black/50 backdrop-blur-sm rounded-xl border border-white/10"
+                className="w-[500px] mx-4 p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-lg"
               >
-                <p className="text-lg mb-8 text-gray-300 leading-relaxed">"{testimonial.quote}"</p>
-                <div className="flex items-center gap-4">
-                  <Avatar className="h-12 w-12 border-2 border-primary/20">
-                    <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                    <AvatarFallback className="bg-primary/10 text-primary">
-                      {testimonial.author[0]}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col">
-                    <span className="font-medium text-primary">{testimonial.author}</span>
-                    <span className="text-sm text-gray-400">{testimonial.author.split(',')[1]?.trim()}</span>
-                  </div>
+                <div className="h-full flex flex-col">
+                  <blockquote className="flex-1">
+                    <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                      "{testimonial.quote}"
+                    </p>
+                  </blockquote>
+                  <footer className="flex items-center gap-4 mt-auto">
+                    <Avatar className="h-12 w-12 ring-2 ring-primary/20">
+                      <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                      <AvatarFallback className="bg-primary/10 text-primary">
+                        {testimonial.author[0]}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col">
+                      <cite className="font-medium text-primary not-italic">
+                        {testimonial.author.split(',')[0]}
+                      </cite>
+                      <span className="text-sm text-gray-500">
+                        {testimonial.author.split(',')[1]?.trim()}
+                      </span>
+                    </div>
+                  </footer>
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex gap-8 animate-marquee2 whitespace-nowrap py-4">
+          
+          {/* Second scroll instance */}
+          <div className="flex animate-marquee2 whitespace-nowrap">
             {testimonials.map((testimonial) => (
               <div
                 key={`${testimonial.id}-clone`}
-                className="flex-none w-[450px] p-8 bg-black/50 backdrop-blur-sm rounded-xl border border-white/10"
+                className="w-[500px] mx-4 p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-lg"
               >
-                <p className="text-lg mb-8 text-gray-300 leading-relaxed">"{testimonial.quote}"</p>
-                <div className="flex items-center gap-4">
-                  <Avatar className="h-12 w-12 border-2 border-primary/20">
-                    <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                    <AvatarFallback className="bg-primary/10 text-primary">
-                      {testimonial.author[0]}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col">
-                    <span className="font-medium text-primary">{testimonial.author}</span>
-                    <span className="text-sm text-gray-400">{testimonial.author.split(',')[1]?.trim()}</span>
-                  </div>
+                <div className="h-full flex flex-col">
+                  <blockquote className="flex-1">
+                    <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                      "{testimonial.quote}"
+                    </p>
+                  </blockquote>
+                  <footer className="flex items-center gap-4 mt-auto">
+                    <Avatar className="h-12 w-12 ring-2 ring-primary/20">
+                      <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                      <AvatarFallback className="bg-primary/10 text-primary">
+                        {testimonial.author[0]}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col">
+                      <cite className="font-medium text-primary not-italic">
+                        {testimonial.author.split(',')[0]}
+                      </cite>
+                      <span className="text-sm text-gray-500">
+                        {testimonial.author.split(',')[1]?.trim()}
+                      </span>
+                    </div>
+                  </footer>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
