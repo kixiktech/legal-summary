@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -19,11 +20,13 @@ const Index = () => {
       <section className="pt-32 pb-20 md:pt-40 md:pb-32">
         <div className="container px-6 mx-auto">
           <div className="text-center max-w-3xl mx-auto space-y-6 animate-fade-up">
-            <div className="inline-block px-3 py-1 mb-6 text-sm font-medium text-primary bg-primary/10 rounded-full">
-              Revolutionizing Legal Document Processing
-            </div>
-            <div className="inline-flex items-center justify-center p-4 rounded-full bg-primary/10 mb-6">
-              <Scale className="h-12 w-12 text-primary" strokeWidth={1.5} />
+            <div className="flex flex-col items-center justify-center">
+              <div className="inline-block px-3 py-1 mb-6 text-sm font-medium text-primary bg-primary/10 rounded-full">
+                Revolutionizing Legal Document Processing
+              </div>
+              <div className="inline-flex items-center justify-center p-4 rounded-full bg-primary/10">
+                <Scale className="h-12 w-12 text-primary" strokeWidth={1.5} />
+              </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-balance relative animate-fade-up group">
               Transform Hours of Deposition Reading into{" "}
