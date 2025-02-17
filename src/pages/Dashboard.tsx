@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Plus, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,57 +9,75 @@ import SummaryCard from "@/components/dashboard/SummaryCard";
 import EmptyState from "@/components/dashboard/EmptyState";
 import ProfileCard from "@/components/dashboard/ProfileCard";
 import type { Summary } from "@/types/dashboard";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
 import TestNav from "@/components/TestNav";
-
-const mockSummaries: Summary[] = [
-  {
-    id: "1",
-    fileName: "Smith vs Johnson Deposition.pdf",
-    uploadDate: "2024-02-20T14:30:00Z",
-    status: "completed",
-    downloadUrl: "#",
-    pageCount: 45,
-  },
-  {
-    id: "2",
-    fileName: "Brown Case Testimony.pdf",
-    uploadDate: "2024-02-20T10:15:00Z",
-    status: "completed",
-    downloadUrl: "#",
-    pageCount: 32,
-  },
-  {
-    id: "3",
-    fileName: "Wilson Investigation.pdf",
-    uploadDate: "2024-02-19T16:45:00Z",
-    status: "completed",
-    downloadUrl: "#",
-    pageCount: 78,
-  },
-];
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [summaries] = useState<Summary[]>(mockSummaries);
+  const [summaries, setSummaries] = useState<Summary[]>([]);
   const [activeFilter, setActiveFilter] = useState<"recent" | "all">("recent");
+  const { session } = useAuth();
+
+  useEffect(() => {
+    const fetchSummaries = async () => {
+      if (!session?.user?.id) return;
+
+      const { data, error } = await supabase
+        .from('summaries')
+        .select('*')
+        .eq('user_id', session.user.id)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching summaries:', error);
+        return;
+      }
+
+      setSummaries(data || []);
+    };
+
+    fetchSummaries();
+  }, [session]);
 
   const filteredSummaries = summaries
     .filter((summary) =>
-      summary.fileName.toLowerCase().includes(searchQuery.toLowerCase())
+      summary.file_name.toLowerCase().includes(searchQuery.toLowerCase())
     )
     .filter((summary) => {
       if (activeFilter === "recent") {
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-        return new Date(summary.uploadDate) >= thirtyDaysAgo;
+        return new Date(summary.created_at) >= thirtyDaysAgo;
       }
       return true;
     });
 
-  const latestSummary = summaries[0]; // Assuming summaries are sorted by date
-  const handleDownload = (summary: Summary) => {
-    console.log("Downloading summary:", summary.id);
-    // Implement actual download logic here
+  const latestSummary = summaries[0];
+  const handleDownload = async (summary: Summary) => {
+    try {
+      if (!summary.original_file_path) {
+        throw new Error("No file path found");
+      }
+
+      const { data, error } = await supabase.storage
+        .from('legal_docs')
+        .download(summary.original_file_path);
+
+      if (error) throw error;
+
+      // Create a download link
+      const url = URL.createObjectURL(data);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = summary.file_name;
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error: any) {
+      console.error('Error downloading file:', error);
+    }
   };
 
   return (
@@ -86,7 +105,6 @@ const Dashboard = () => {
                   <span className="text-sm text-muted-foreground">Just uploaded</span>
                 </div>
                 <SummaryCard
-                  key={latestSummary.id}
                   summary={latestSummary}
                   onDownload={handleDownload}
                 />

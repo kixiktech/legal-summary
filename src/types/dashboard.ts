@@ -1,9 +1,4 @@
 
-export interface Summary {
-  id: string;
-  fileName: string;
-  uploadDate: string;
-  status: "completed" | "processing" | "failed";
-  downloadUrl?: string;
-  pageCount: number;
-}
+import { Database } from "@/integrations/supabase/types";
+
+export type Summary = Database['public']['Tables']['summaries']['Row'];
