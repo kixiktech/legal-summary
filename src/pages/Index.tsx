@@ -2,7 +2,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import { ArrowRight, FileText, Shield, Zap, Check } from "lucide-react";
+import { ArrowRight, FileText, Shield, Zap, Check, Gavel } from "lucide-react";
 import TestNav from "@/components/TestNav";
 
 const Index = () => {
@@ -20,6 +20,9 @@ const Index = () => {
       <section className="pt-32 pb-20 md:pt-40 md:pb-32">
         <div className="container px-6 mx-auto">
           <div className="text-center max-w-3xl mx-auto space-y-6 animate-fade-up">
+            <div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 mb-4">
+              <Gavel className="h-6 w-6 text-primary" />
+            </div>
             <div className="inline-block px-3 py-1 mb-6 text-sm font-medium text-primary bg-primary/10 rounded-full">
               Revolutionizing Legal Document Processing
             </div>
