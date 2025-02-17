@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { ArrowRight, FileText, Shield, Zap, Check } from "lucide-react";
 import TestNav from "@/components/TestNav";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Navbar />
       
       {/* Hero Section */}
@@ -23,14 +21,9 @@ const Index = () => {
               </span>
               <div className="absolute -inset-x-4 -inset-y-2 bg-primary/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-lg -z-10"></div>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-              Expert summarizations tailored for legal professionals. Fast. Accurate. Secure.
-            </p>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">Cut through the noise with precision. Instant, reliable, and secure. Get the key facts instantly without missing critical details.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <Link
-                to="/signup"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-              >
+              <Link to="/signup" className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -53,33 +46,21 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                icon: <Zap className="h-6 w-6 text-primary" />,
-                title: "Lightning Fast",
-                description:
-                  "Get comprehensive summaries in minutes, not hours. Save valuable time for case preparation.",
-              },
-              {
-                icon: <FileText className="h-6 w-6 text-primary" />,
-                title: "Precision Perfect",
-                description:
-                  "AI-powered analysis ensures accurate, detailed summaries capturing every crucial detail.",
-              },
-              {
-                icon: <Shield className="h-6 w-6 text-primary" />,
-                title: "Bank-Level Security",
-                description:
-                  "Your documents are protected with enterprise-grade encryption and security measures.",
-              },
-            ].map((feature, index) => (
-              <div
-                key={index}
-                className="group p-6 glass-card rounded-lg animate-fade-up"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
+            {[{
+            icon: <Zap className="h-6 w-6 text-primary" />,
+            title: "Lightning Fast",
+            description: "Get comprehensive summaries in minutes, not hours. Save valuable time for case preparation."
+          }, {
+            icon: <FileText className="h-6 w-6 text-primary" />,
+            title: "Precision Perfect",
+            description: "AI-powered analysis ensures accurate, detailed summaries capturing every crucial detail."
+          }, {
+            icon: <Shield className="h-6 w-6 text-primary" />,
+            title: "Bank-Level Security",
+            description: "Your documents are protected with enterprise-grade encryption and security measures."
+          }].map((feature, index) => <div key={index} className="group p-6 glass-card rounded-lg animate-fade-up" style={{
+            animationDelay: `${index * 100}ms`
+          }}>
                 <div className="flex flex-col items-center text-center">
                   <div className="p-3 mb-4 rounded-full bg-secondary">
                     {feature.icon}
@@ -87,8 +68,7 @@ const Index = () => {
                   <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                   <p className="text-muted-foreground">{feature.description}</p>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -106,41 +86,19 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                title: "Basic Summarization",
-                price: "$0.50",
-                description: "Perfect for individual practitioners and small firms",
-                features: [
-                  "Standard processing time",
-                  "Basic summary format",
-                  "Key points extraction",
-                  "Email support",
-                  "Secure document storage"
-                ]
-              },
-              {
-                title: "Premium Summarization",
-                price: "$1.00",
-                description: "Ideal for law firms and high-volume users",
-                features: [
-                  "Priority processing",
-                  "Advanced summary format",
-                  "Deep insights extraction",
-                  "24/7 priority support",
-                  "Extended document storage",
-                  "Custom templates",
-                  "Bulk processing"
-                ]
-              }
-            ].map((plan, index) => (
-              <div
-                key={index}
-                className="group relative p-8 glass-card rounded-xl animate-fade-up"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
+            {[{
+            title: "Basic Summarization",
+            price: "$0.50",
+            description: "Perfect for individual practitioners and small firms",
+            features: ["Standard processing time", "Basic summary format", "Key points extraction", "Email support", "Secure document storage"]
+          }, {
+            title: "Premium Summarization",
+            price: "$1.00",
+            description: "Ideal for law firms and high-volume users",
+            features: ["Priority processing", "Advanced summary format", "Deep insights extraction", "24/7 priority support", "Extended document storage", "Custom templates", "Bulk processing"]
+          }].map((plan, index) => <div key={index} className="group relative p-8 glass-card rounded-xl animate-fade-up" style={{
+            animationDelay: `${index * 100}ms`
+          }}>
                 <div className="flex flex-col h-full">
                   <div className="mb-6">
                     <h3 className="text-2xl font-bold mb-2">{plan.title}</h3>
@@ -156,26 +114,20 @@ const Index = () => {
                   </div>
                   
                   <ul className="space-y-3 mb-8 flex-grow">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-2">
+                    {plan.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
                         <span className="text-sm text-muted-foreground">
                           {feature}
                         </span>
-                      </li>
-                    ))}
+                      </li>)}
                   </ul>
                   
-                  <Link
-                    to="/signup"
-                    className="w-full inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-                  >
+                  <Link to="/signup" className="w-full inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
                     Get Started
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -191,10 +143,7 @@ const Index = () => {
               Join thousands of legal professionals who trust our platform for their
               document summarization needs.
             </p>
-            <Link
-              to="/signup"
-              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-            >
+            <Link to="/signup" className="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
               Get Started Now
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
@@ -210,30 +159,19 @@ const Index = () => {
               © 2024 LegalSummarize. All rights reserved.
             </p>
             <div className="flex items-center space-x-6">
-              <Link
-                to="/privacy"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Privacy
               </Link>
-              <Link
-                to="/terms"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Terms
               </Link>
-              <Link
-                to="/contact"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </Link>
             </div>
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
