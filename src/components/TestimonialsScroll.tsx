@@ -146,15 +146,18 @@ const TestimonialsScroll = () => {
         </div>
       </div>
       
-      <div className="relative w-full">
+      <div className="relative w-full overflow-hidden">
         {/* Gradient Overlays */}
         <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black via-black/90 to-transparent z-10" />
         <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black via-black/90 to-transparent z-10" />
         
-        {/* Scrolling Content */}
-        <div className="relative flex overflow-x-hidden">
-          {/* First scroll instance */}
-          <div className="flex animate-marquee whitespace-nowrap">
+        {/* Scrolling Track */}
+        <div className="flex">
+          {/* First Track */}
+          <div 
+            className="flex animate-marquee whitespace-nowrap"
+            style={{ animationDuration: '120s' }}
+          >
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
@@ -162,14 +165,11 @@ const TestimonialsScroll = () => {
                 rounded-2xl backdrop-blur-sm border border-white/10 overflow-hidden group"
               >
                 <div className="relative p-8 flex flex-col justify-between min-h-[320px]">
-                  <div className="mb-6">
-                    <div className="absolute -left-2 -top-0 text-6xl text-primary/20">"</div>
-                    <blockquote className="relative pt-6">
-                      <p className="text-base text-gray-300 leading-relaxed break-words whitespace-normal">
-                        {testimonial.quote}
-                      </p>
-                    </blockquote>
-                  </div>
+                  <blockquote className="mb-6">
+                    <p className="text-base text-gray-300 leading-relaxed break-words whitespace-normal">
+                      {testimonial.quote}
+                    </p>
+                  </blockquote>
                   
                   <footer className="mt-4 pt-4 border-t border-white/10">
                     <div className="flex items-center gap-4">
@@ -194,8 +194,11 @@ const TestimonialsScroll = () => {
             ))}
           </div>
           
-          {/* Second scroll instance */}
-          <div className="flex animate-marquee2 whitespace-nowrap">
+          {/* Second Track (Duplicate) */}
+          <div 
+            className="flex animate-marquee2 whitespace-nowrap"
+            style={{ animationDuration: '120s' }}
+          >
             {testimonials.map((testimonial) => (
               <div
                 key={`${testimonial.id}-clone`}
@@ -203,14 +206,11 @@ const TestimonialsScroll = () => {
                 rounded-2xl backdrop-blur-sm border border-white/10 overflow-hidden group"
               >
                 <div className="relative p-8 flex flex-col justify-between min-h-[320px]">
-                  <div className="mb-6">
-                    <div className="absolute -left-2 -top-0 text-6xl text-primary/20">"</div>
-                    <blockquote className="relative pt-6">
-                      <p className="text-base text-gray-300 leading-relaxed break-words whitespace-normal">
-                        {testimonial.quote}
-                      </p>
-                    </blockquote>
-                  </div>
+                  <blockquote className="mb-6">
+                    <p className="text-base text-gray-300 leading-relaxed break-words whitespace-normal">
+                      {testimonial.quote}
+                    </p>
+                  </blockquote>
                   
                   <footer className="mt-4 pt-4 border-t border-white/10">
                     <div className="flex items-center gap-4">
