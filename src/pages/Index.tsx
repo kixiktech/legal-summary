@@ -8,6 +8,7 @@ import PricingSection from "@/components/landing/PricingSection";
 import CustomAutomationsSection from "@/components/landing/CustomAutomationsSection";
 import TestimonialsScroll from "@/components/TestimonialsScroll";
 import Footer from "@/components/landing/Footer";
+import CTASection from "@/components/landing/CTASection";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Index = () => {
       <TestimonialsScroll />
       <PricingSection />
       <CustomAutomationsSection />
+      <CTASection />
       <Footer onNavigation={handleNavigation} />
     </div>
   );
