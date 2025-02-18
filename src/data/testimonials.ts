@@ -1,4 +1,3 @@
-
 import { Testimonial } from "@/types/testimonial";
 
 export const testimonials: Testimonial[] = [
@@ -6,19 +5,19 @@ export const testimonials: Testimonial[] = [
     id: 1,
     quote: "This deposition summarizer has completely transformed my preparation process. What used to take me 6-8 hours now takes less than an hour, and the insights are incredibly detailed.",
     author: "Sarah Mitchell, Esq.",
-    avatar: "/lovable-uploads/47f45f98-de21-42ae-8b61-dd8064c0ad6b.png"
+    avatar: "/lovable-uploads/sarah-mitchell.png"
   },
   {
     id: 2,
     quote: "As a litigation partner, time is everything. This tool doesn't just summarize - it identifies key contradictions and patterns I might have missed. It's like having an extra associate on the team.",
     author: "Michael Rodriguez, Partner",
-    avatar: "/lovable-uploads/47f45f98-de21-42ae-8b61-dd8064c0ad6b.png"
+    avatar: "/lovable-uploads/michael-rodriguez.png"
   },
   {
     id: 3,
     quote: "The automated summaries are consistently thorough and accurate. I've caught several crucial details that would have taken hours to find manually. Absolute game-changer for case preparation.",
     author: "Jennifer Chen, Trial Attorney",
-    avatar: "/lovable-uploads/47f45f98-de21-42ae-8b61-dd8064c0ad6b.png"
+    avatar: "/lovable-uploads/jennifer-chen.png"
   },
   {
     id: 4,
