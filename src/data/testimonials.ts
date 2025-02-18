@@ -1,5 +1,28 @@
-
+import { supabase } from "@/integrations/supabase/client";
 import { Testimonial } from "@/types/testimonial";
+
+async function generateHeadshot(description: string, filename: string) {
+  try {
+    const { data, error } = await supabase.functions.invoke('generate-headshot', {
+      body: {
+        prompt: description,
+        filename: filename
+      }
+    });
+    
+    if (error) throw error;
+    console.log('Generated headshot:', data);
+    return data;
+  } catch (error) {
+    console.error('Error generating headshot:', error);
+  }
+}
+
+// Generate first headshot
+generateHeadshot(
+  "professional female attorney in her mid-thirties with brown hair, wearing a navy blazer",
+  "sarah-mitchell.png"
+);
 
 export const testimonials: Testimonial[] = [
   {
