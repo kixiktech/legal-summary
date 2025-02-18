@@ -1,7 +1,7 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { useMediaQuery } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type Testimonial = {
   id: number;
@@ -134,7 +134,7 @@ const testimonials: Testimonial[] = [
 ];
 
 const TestimonialsScroll = () => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useIsMobile();
   const [isPaused, setIsPaused] = useState(false);
 
   return (
@@ -152,44 +152,44 @@ const TestimonialsScroll = () => {
       
       <div className="relative w-full overflow-hidden">
         {/* Gradient Overlays - Reduced width on mobile */}
-        <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-black via-black/90 to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-black via-black/90 to-transparent z-10" />
+        <div className="absolute inset-y-0 left-0 w-12 md:w-40 bg-gradient-to-r from-black via-black/90 to-transparent z-10" />
+        <div className="absolute inset-y-0 right-0 w-12 md:w-40 bg-gradient-to-l from-black via-black/90 to-transparent z-10" />
         
         {/* Scrolling Track */}
         <div 
-          className={`flex ${isMobile ? 'animate-carousel-mobile' : 'animate-carousel'}`}
+          className={`flex gap-4 md:gap-8 ${isMobile ? 'animate-carousel-mobile' : 'animate-carousel'}`}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
         >
           {/* First Track */}
-          <div className="flex shrink-0">
+          <div className="flex gap-4 md:gap-8 shrink-0">
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="relative w-[280px] md:w-[400px] mx-2 md:mx-4 bg-gradient-to-b from-gray-900/50 to-gray-900/30 
+                className="relative w-[260px] md:w-[400px] shrink-0 bg-gradient-to-b from-gray-900/50 to-gray-900/30 
                 rounded-2xl backdrop-blur-sm border border-white/10 overflow-hidden group"
               >
-                <div className="relative p-4 md:p-8 flex flex-col justify-between min-h-[280px] md:min-h-[320px]">
-                  <blockquote className="mb-4 md:mb-6">
-                    <p className="text-sm md:text-base text-gray-300 leading-relaxed break-words whitespace-normal">
+                <div className="relative p-4 md:p-8 flex flex-col justify-between h-[240px] md:h-[320px]">
+                  <blockquote className="mb-4">
+                    <p className="text-xs md:text-base text-gray-300 leading-relaxed line-clamp-6 md:line-clamp-none">
                       {testimonial.quote}
                     </p>
                   </blockquote>
                   
-                  <footer className="mt-2 md:mt-4 pt-2 md:pt-4 border-t border-white/10">
-                    <div className="flex items-center gap-3 md:gap-4">
-                      <Avatar className="h-10 w-10 md:h-12 md:w-12 ring-2 ring-primary/20">
+                  <footer className="mt-auto pt-3 border-t border-white/10">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="h-8 w-8 md:h-12 md:w-12 ring-2 ring-primary/20">
                         <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
                         <AvatarFallback className="bg-primary/10 text-primary">
                           {testimonial.author[0]}
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex flex-col">
-                        <cite className="text-sm md:text-base not-italic font-semibold text-primary tracking-tight">
+                        <cite className="text-xs md:text-base not-italic font-semibold text-primary tracking-tight">
                           {testimonial.author.split(',')[0]}
                         </cite>
-                        <span className="text-xs md:text-sm text-gray-400">
+                        <span className="text-[10px] md:text-sm text-gray-400">
                           {testimonial.author.split(',')[1]?.trim()}
                         </span>
                       </div>
@@ -201,33 +201,33 @@ const TestimonialsScroll = () => {
           </div>
           
           {/* Second Track (Duplicate) */}
-          <div className="flex shrink-0">
+          <div className="flex gap-4 md:gap-8 shrink-0">
             {testimonials.map((testimonial) => (
               <div
                 key={`${testimonial.id}-clone`}
-                className="relative w-[280px] md:w-[400px] mx-2 md:mx-4 bg-gradient-to-b from-gray-900/50 to-gray-900/30 
+                className="relative w-[260px] md:w-[400px] shrink-0 bg-gradient-to-b from-gray-900/50 to-gray-900/30 
                 rounded-2xl backdrop-blur-sm border border-white/10 overflow-hidden group"
               >
-                <div className="relative p-4 md:p-8 flex flex-col justify-between min-h-[280px] md:min-h-[320px]">
-                  <blockquote className="mb-4 md:mb-6">
-                    <p className="text-sm md:text-base text-gray-300 leading-relaxed break-words whitespace-normal">
+                <div className="relative p-4 md:p-8 flex flex-col justify-between h-[240px] md:h-[320px]">
+                  <blockquote className="mb-4">
+                    <p className="text-xs md:text-base text-gray-300 leading-relaxed line-clamp-6 md:line-clamp-none">
                       {testimonial.quote}
                     </p>
                   </blockquote>
                   
-                  <footer className="mt-2 md:mt-4 pt-2 md:pt-4 border-t border-white/10">
-                    <div className="flex items-center gap-3 md:gap-4">
-                      <Avatar className="h-10 w-10 md:h-12 md:w-12 ring-2 ring-primary/20">
+                  <footer className="mt-auto pt-3 border-t border-white/10">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="h-8 w-8 md:h-12 md:w-12 ring-2 ring-primary/20">
                         <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
                         <AvatarFallback className="bg-primary/10 text-primary">
                           {testimonial.author[0]}
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex flex-col">
-                        <cite className="text-sm md:text-base not-italic font-semibold text-primary tracking-tight">
+                        <cite className="text-xs md:text-base not-italic font-semibold text-primary tracking-tight">
                           {testimonial.author.split(',')[0]}
                         </cite>
-                        <span className="text-xs md:text-sm text-gray-400">
+                        <span className="text-[10px] md:text-sm text-gray-400">
                           {testimonial.author.split(',')[1]?.trim()}
                         </span>
                       </div>

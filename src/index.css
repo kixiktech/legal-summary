@@ -91,11 +91,20 @@
   20% {
     transform: translateX(0);
   }
-  80% {
-    transform: translateX(calc(-280px * 20 - 1rem * 20));
+  25% {
+    transform: translateX(calc(-260px - 1rem));
+  }
+  45% {
+    transform: translateX(calc(-260px - 1rem));
+  }
+  50% {
+    transform: translateX(calc(-520px - 2rem));
+  }
+  70% {
+    transform: translateX(calc(-520px - 2rem));
   }
   100% {
-    transform: translateX(calc(-280px * 20 - 1rem * 20));
+    transform: translateX(calc(-260px * 20 - 1rem * 20));
   }
 }
 
@@ -104,5 +113,5 @@
 }
 
 .animate-carousel-mobile {
-  animation: carousel-mobile 120s linear infinite;
+  animation: carousel-mobile 120s ease-in-out infinite;
 }
