@@ -1,3 +1,4 @@
+
 import { Testimonial } from "@/types/testimonial";
 
 export const testimonials: Testimonial[] = [
@@ -107,7 +108,7 @@ export const testimonials: Testimonial[] = [
     id: 18,
     quote: "This platform has given our firm a competitive edge. The speed and accuracy of deposition analysis help us better serve our clients while growing our practice.",
     author: "Thomas Wright, Trial Lawyer",
-    avatar: "/lovable-uploads/47f45f98-de21-42ae-8b61-dd8064c0ad6b.png"
+    avatar: "/lovable-uploads/8bdae6c6-ca26-47cc-b8a3-0ba634288cc4.png"
   },
   {
     id: 19,
