@@ -23,9 +23,9 @@ const CustomAutomationsSection = () => {
           <div className="glass-card rounded-2xl p-8 md:p-10 animate-fade-up flex flex-col h-full justify-between">
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground">
-                Ready to scale up? We offer specialized, custom-trained automations 
-                tailored to your unique workflows. Perfect for firms looking to process
-                5,000–8,000 automations monthly with dedicated support and customization.
+                If you have processes in your firm that feel repetitive or time-consuming, 
+                we can help. We offer specialized, custom-trained automations tailored to 
+                your unique workflows. Reach out and discover what we can build together.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start">
