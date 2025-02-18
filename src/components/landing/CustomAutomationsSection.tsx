@@ -11,7 +11,7 @@ const CustomAutomationsSection = () => {
           {/* Left side - Header */}
           <div className="animate-fade-up">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-6">
-              Custom AI Automations for Your Firm
+              Unlock the Power of Custom Automation for Your Firm
             </h2>
             <div className="h-1 w-24 bg-primary/30 rounded mb-6"></div>
             <p className="text-xl text-foreground/80 font-medium">
