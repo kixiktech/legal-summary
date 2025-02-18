@@ -30,7 +30,9 @@ const TestimonialsScroll = () => {
         <div 
           className={`flex gap-4 md:gap-8 ${isMobile ? 'animate-carousel-mobile' : 'animate-carousel'}`}
           onMouseEnter={() => setIsPaused(true)}
+          onTouchStart={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          onTouchEnd={() => setIsPaused(false)}
           style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
         >
           <TestimonialTrack testimonials={testimonials} />

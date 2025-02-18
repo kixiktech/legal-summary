@@ -6,7 +6,7 @@ import HeroSection from "@/components/landing/HeroSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import PricingSection from "@/components/landing/PricingSection";
 import CustomAutomationsSection from "@/components/landing/CustomAutomationsSection";
-import TestimonialsScroll from "@/components/TestimonialsScroll";
+import TestimonialsScroll from "@/components/testimonials/TestimonialsScroll";
 import Footer from "@/components/landing/Footer";
 import CTASection from "@/components/landing/CTASection";
 
