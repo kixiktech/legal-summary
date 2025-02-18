@@ -23,13 +23,13 @@ export const testimonials: Testimonial[] = [
     id: 4,
     quote: "Finally, a legal tech tool that delivers on its promises. The time saved on deposition review has allowed me to take on more cases while maintaining the highest level of preparation.",
     author: "David Thompson, Legal Partner",
-    avatar: "/lovable-uploads/47f45f98-de21-42ae-8b61-dd8064c0ad6b.png"
+    avatar: "/lovable-uploads/david-thompson.png"
   },
   {
     id: 5,
     quote: "Not only does it save time, but the quality of insights is remarkable. It's helped me identify patterns across multiple depositions that proved crucial in several cases.",
     author: "Rachel Goldstein, Senior Counsel",
-    avatar: "/lovable-uploads/47f45f98-de21-42ae-8b61-dd8064c0ad6b.png"
+    avatar: "/lovable-uploads/rachel-goldstein.png"
   },
   {
     id: 6,
