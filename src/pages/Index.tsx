@@ -9,6 +9,7 @@ import CustomAutomationsSection from "@/components/landing/CustomAutomationsSect
 import TestimonialsScroll from "@/components/testimonials/TestimonialsScroll";
 import Footer from "@/components/landing/Footer";
 import CTASection from "@/components/landing/CTASection";
+import { GenerateHeadshots } from "@/components/testimonials/GenerateHeadshots";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Index = () => {
       <CustomAutomationsSection />
       <CTASection />
       <Footer onNavigation={handleNavigation} />
+      <GenerateHeadshots />
     </div>
   );
 };
