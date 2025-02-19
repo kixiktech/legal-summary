@@ -32,13 +32,16 @@ const PlanSelector: React.FC<PlanSelectorProps> = ({
           variant="outline"
           className={cn(
             "h-auto p-4 justify-start text-left",
-            selectedPlan === "basic" && "border-primary"
+            selectedPlan === "basic" ? "border-primary text-black" : "text-white"
           )}
           onClick={() => onPlanChange("basic")}
         >
           <div>
             <div className="font-medium">Basic Summary</div>
-            <div className="text-sm text-muted-foreground">
+            <div className={cn(
+              "text-sm",
+              selectedPlan === "basic" ? "text-black/70" : "text-muted-foreground"
+            )}>
               $0.50 per page
             </div>
           </div>
@@ -48,13 +51,16 @@ const PlanSelector: React.FC<PlanSelectorProps> = ({
           variant="outline"
           className={cn(
             "h-auto p-4 justify-start text-left",
-            selectedPlan === "premium" && "border-primary"
+            selectedPlan === "premium" ? "border-primary text-black" : "text-white"
           )}
           onClick={() => onPlanChange("premium")}
         >
           <div>
             <div className="font-medium">Premium Summary</div>
-            <div className="text-sm text-muted-foreground">
+            <div className={cn(
+              "text-sm",
+              selectedPlan === "premium" ? "text-black/70" : "text-muted-foreground"
+            )}>
               $1.00 per page
             </div>
           </div>
