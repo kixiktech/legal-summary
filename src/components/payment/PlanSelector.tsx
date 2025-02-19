@@ -37,7 +37,7 @@ const PlanSelector: React.FC<PlanSelectorProps> = ({
           onClick={() => onPlanChange("basic")}
         >
           <div>
-            <div className="font-medium">Basic Plan</div>
+            <div className="font-medium">Basic Summary</div>
             <div className="text-sm text-muted-foreground">
               $0.50 per page
             </div>
