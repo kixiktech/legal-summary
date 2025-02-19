@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,16 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleScrollToSection = (sectionId: string) => {
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   return (
     <nav
@@ -35,12 +46,14 @@ const Navbar = () => {
             <Link
               to="#features"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => handleScrollToSection('features')}
             >
               Features
             </Link>
             <Link
               to="#pricing"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => handleScrollToSection('pricing')}
             >
               Pricing
             </Link>
@@ -78,12 +91,14 @@ const Navbar = () => {
               <Link
                 to="#features"
                 className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => handleScrollToSection('features')}
               >
                 Features
               </Link>
               <Link
                 to="#pricing"
                 className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => handleScrollToSection('pricing')}
               >
                 Pricing
               </Link>
