@@ -1,10 +1,12 @@
 
 import React from "react";
-import { Mail } from "lucide-react";
+import { Mail, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Support = () => {
   const contactEmail = "support@legalsummarize.com";
+  const navigate = useNavigate();
 
   const handleEmailClick = () => {
     window.location.href = `mailto:${contactEmail}`;
@@ -13,6 +15,16 @@ const Support = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container max-w-2xl mx-auto py-12 px-4">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="mb-6"
+          onClick={() => navigate(-1)}
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back
+        </Button>
+
         <div className="space-y-6">
           <div className="text-center space-y-2">
             <h1 className="text-3xl font-bold">Contact Support</h1>
