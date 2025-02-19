@@ -33,7 +33,7 @@ const PlanSelector: React.FC<PlanSelectorProps> = ({
           className={cn(
             "h-auto p-4 justify-start text-left",
             selectedPlan === "basic" 
-              ? "border-primary bg-[#FFD700] text-black hover:bg-[#FFD700] hover:text-black" 
+              ? "border-primary bg-primary text-black hover:bg-primary hover:text-black" 
               : "text-white hover:text-white"
           )}
           onClick={() => onPlanChange("basic")}
@@ -54,7 +54,7 @@ const PlanSelector: React.FC<PlanSelectorProps> = ({
           className={cn(
             "h-auto p-4 justify-start text-left",
             selectedPlan === "premium" 
-              ? "border-primary bg-[#FFD700] text-black hover:bg-[#FFD700] hover:text-black" 
+              ? "border-primary bg-primary text-black hover:bg-primary hover:text-black" 
               : "text-white hover:text-white"
           )}
           onClick={() => onPlanChange("premium")}
