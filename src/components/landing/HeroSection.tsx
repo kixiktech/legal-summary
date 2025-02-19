@@ -16,7 +16,7 @@ const HeroSection = () => {
       <div className="container px-4 mx-auto">
         <div className="text-center max-w-4xl mx-auto">
           <div className="mb-8">
-            <div className="text-primary/80 mb-4 px-6 py-2 inline-block rounded-full bg-primary/5 border border-primary/10">
+            <div className="text-primary/80 mb-6 px-6 py-2 inline-block rounded-full bg-primary/5 border border-primary/10">
               Revolutionizing Legal Document Processing
             </div>
             <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
