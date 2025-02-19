@@ -3,12 +3,18 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Scale } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const { session } = useAuth();
 
   const handleGetStarted = () => {
-    navigate("/auth");
+    if (session) {
+      navigate("/upload");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
