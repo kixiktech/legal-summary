@@ -43,20 +43,18 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              to="#features"
+            <button
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => handleScrollToSection('features')}
             >
               Features
-            </Link>
-            <Link
-              to="#pricing"
+            </button>
+            <button
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => handleScrollToSection('pricing')}
             >
               Pricing
-            </Link>
+            </button>
             <Link
               to="/login"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -88,20 +86,18 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-t border-border animate-in">
             <div className="container mx-auto px-6 py-4 space-y-4">
-              <Link
-                to="#features"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+              <button
+                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => handleScrollToSection('features')}
               >
                 Features
-              </Link>
-              <Link
-                to="#pricing"
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+              </button>
+              <button
+                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => handleScrollToSection('pricing')}
               >
                 Pricing
-              </Link>
+              </button>
               <Link
                 to="/login"
                 className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
