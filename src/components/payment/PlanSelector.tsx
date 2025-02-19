@@ -53,7 +53,7 @@ const PlanSelector: React.FC<PlanSelectorProps> = ({
           onClick={() => onPlanChange("premium")}
         >
           <div>
-            <div className="font-medium">Premium Plan</div>
+            <div className="font-medium">Premium Summary</div>
             <div className="text-sm text-muted-foreground">
               $1.00 per page
             </div>
