@@ -16,9 +16,14 @@ const EmptyState = () => {
           Upload your first deposition to get started
         </p>
       </div>
-      <Button asChild>
-        <Link to="/upload">Upload Deposition</Link>
-      </Button>
+      <div className="flex flex-col sm:flex-row gap-2">
+        <Button asChild>
+          <Link to="/upload">Upload Deposition</Link>
+        </Button>
+        <Button variant="outline" asChild>
+          <Link to="/support">Contact Support</Link>
+        </Button>
+      </div>
     </div>
   );
 };
