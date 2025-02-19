@@ -1,3 +1,4 @@
+
 import React from "react";
 const SecuritySection = () => {
   return <section className="relative w-full bg-black py-24">
@@ -9,14 +10,14 @@ const SecuritySection = () => {
           <p className="text-lg text-gray-400 mb-12">LegalSummarize utilizes custom AI trained for legal needs, securely operating on infrastructure that's SOC 2 and HIPAA certified. Your sensitive information is protected by a level of security not found in other services.</p>
           
           <div className="flex justify-center items-center gap-8 flex-wrap">
-            <div className="w-24 h-24 md:w-32 md:h-32">
-              <img src="/lovable-uploads/193fb53f-e6ec-471d-ab96-6de62b429f09.png" alt="AICPA SOC 2 Certification" className="w-full h-full object-contain" />
+            <div className="w-64 h-32 bg-white/5 rounded-lg flex items-center justify-center p-6 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors">
+              <span className="text-lg font-semibold text-white text-center">AICPA & SOC 2 Compliant</span>
             </div>
-            <div className="w-24 h-24 md:w-32 md:h-32">
-              <img src="/lovable-uploads/193fb53f-e6ec-471d-ab96-6de62b429f09.png" alt="HIPAA Compliant" className="w-full h-full object-contain" />
+            <div className="w-64 h-32 bg-white/5 rounded-lg flex items-center justify-center p-6 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors">
+              <span className="text-lg font-semibold text-white text-center">HIPAA Certified</span>
             </div>
-            <div className="w-24 h-24 md:w-32 md:h-32">
-              <img src="/lovable-uploads/193fb53f-e6ec-471d-ab96-6de62b429f09.png" alt="HITECH Compliant" className="w-full h-full object-contain" />
+            <div className="w-64 h-32 bg-white/5 rounded-lg flex items-center justify-center p-6 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors">
+              <span className="text-lg font-semibold text-white text-center">HITECH Compliant</span>
             </div>
           </div>
         </div>
