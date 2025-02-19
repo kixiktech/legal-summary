@@ -7,6 +7,7 @@ import FeaturesSection from "@/components/landing/FeaturesSection";
 import PricingSection from "@/components/landing/PricingSection";
 import CustomAutomationsSection from "@/components/landing/CustomAutomationsSection";
 import TestimonialsScroll from "@/components/testimonials/TestimonialsScroll";
+import SecuritySection from "@/components/landing/SecuritySection";
 import Footer from "@/components/landing/Footer";
 import CTASection from "@/components/landing/CTASection";
 
@@ -24,6 +25,7 @@ const Index = () => {
       <HeroSection />
       <FeaturesSection />
       <TestimonialsScroll />
+      <SecuritySection />
       <PricingSection />
       <CustomAutomationsSection />
       <CTASection />
