@@ -1,7 +1,7 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { Balance } from "lucide-react";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -18,11 +18,8 @@ const HeroSection = () => {
             <div className="text-primary/80 mb-4 px-6 py-2 inline-block rounded-full bg-primary/5 border border-primary/10">
               Revolutionizing Legal Document Processing
             </div>
-            <div className="w-16 h-16 mx-auto mb-8 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
-              <svg className="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3L3 9V21H21V9L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M12 7L7 10.5V18H17V10.5L12 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
+              <Balance className="w-10 h-10 text-primary" />
             </div>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-balance relative group text-white mb-8">
