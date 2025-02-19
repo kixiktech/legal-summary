@@ -13,7 +13,7 @@ const SecuritySection = () => {
             LegalSummarize utilizes custom AI trained for legal needs, securely operating on infrastructure that's SOC 2 and HIPAA certified. Your sensitive information is protected by a level of security not found in other services.
           </p>
           
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
+          <div className="flex flex-row justify-center items-center gap-4">
             <div className="w-48 h-24 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center p-4 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 animate-fade-up group">
               <span className="text-sm font-semibold text-white text-center group-hover:text-primary transition-colors">AICPA & SOC 2 Compliant</span>
             </div>
