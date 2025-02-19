@@ -1,7 +1,8 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Balance } from "lucide-react";
+import { Scale } from "lucide-react";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const HeroSection = () => {
               Revolutionizing Legal Document Processing
             </div>
             <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
-              <Balance className="w-10 h-10 text-primary" />
+              <Scale className="w-10 h-10 text-primary" />
             </div>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-balance relative group text-white mb-8">
