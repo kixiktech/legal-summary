@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CreditCard, LogOut, UserCircle } from "lucide-react";
+import { CreditCard, LogOut, UserCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
@@ -71,6 +71,17 @@ const ProfileCard = () => {
           <Link to="/payment">
             <CreditCard className="mr-2 h-4 w-4" />
             Payment Settings
+          </Link>
+        </Button>
+        <Button
+          variant="outline"
+          className="w-full justify-start"
+          size="sm"
+          asChild
+        >
+          <Link to="/support">
+            <Mail className="mr-2 h-4 w-4" />
+            Contact Support
           </Link>
         </Button>
         <Button
