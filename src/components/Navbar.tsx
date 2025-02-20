@@ -65,7 +65,7 @@ const Navbar = () => {
               to="/waitlist"
               className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
             >
-              Join the Waitlist
+              Get Started
             </Link>
           </div>
 
@@ -108,7 +108,7 @@ const Navbar = () => {
                 to="/waitlist"
                 className="inline-block px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
               >
-                Join the Waitlist
+                Get Started
               </Link>
             </div>
           </div>
