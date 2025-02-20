@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Scale } from "lucide-react";
+import { Scale, ArrowRight } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
 const HeroSection = () => {
@@ -35,10 +35,11 @@ const HeroSection = () => {
           <div className="flex justify-center">
             <Button
               size="lg"
-              className="bg-primary text-black hover:bg-primary/80 px-8 py-6 text-lg h-auto"
+              className="bg-primary text-black hover:bg-primary/80 px-8 py-6 text-lg h-auto inline-flex items-center"
               onClick={handleGetStarted}
             >
-              Join the Waitlist →
+              Get Started
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
