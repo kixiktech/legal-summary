@@ -10,11 +10,7 @@ const HeroSection = () => {
   const { session } = useAuth();
 
   const handleGetStarted = () => {
-    if (session) {
-      navigate("/upload");
-    } else {
-      navigate("/login");
-    }
+    navigate("/waitlist");
   };
 
   return (
@@ -39,10 +35,10 @@ const HeroSection = () => {
           <div className="flex justify-center">
             <Button
               size="lg"
-              className="bg-primary text-white hover:bg-primary/80 px-8 py-6 text-lg h-auto"
+              className="bg-primary text-black hover:bg-primary/80 px-8 py-6 text-lg h-auto"
               onClick={handleGetStarted}
             >
-              Get Started →
+              Join the Waitlist →
             </Button>
           </div>
         </div>
