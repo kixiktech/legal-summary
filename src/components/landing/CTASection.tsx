@@ -18,7 +18,7 @@ const CTASection = () => {
             to="/waitlist" 
             className="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
           >
-            Get Started Today
+            Get Started
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>
