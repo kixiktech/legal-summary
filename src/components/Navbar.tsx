@@ -62,10 +62,10 @@ const Navbar = () => {
               Login
             </Link>
             <Link
-              to="/signup"
+              to="/waitlist"
               className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
             >
-              Get Started
+              Join the Waitlist
             </Link>
           </div>
 
@@ -105,10 +105,10 @@ const Navbar = () => {
                 Login
               </Link>
               <Link
-                to="/signup"
+                to="/waitlist"
                 className="inline-block px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
               >
-                Get Started
+                Join the Waitlist
               </Link>
             </div>
           </div>

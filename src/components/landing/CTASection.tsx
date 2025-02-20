@@ -15,10 +15,10 @@ const CTASection = () => {
             Join the growing number of legal professionals who are saving time and gaining deeper insights with our AI-powered deposition summarization tool.
           </p>
           <Link 
-            to="/signup" 
+            to="/waitlist" 
             className="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
           >
-            Get Started Today
+            Join the Waitlist
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>
