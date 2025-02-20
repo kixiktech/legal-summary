@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import TestNav from "@/components/TestNav";
+import { ArrowLeft } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -34,6 +35,16 @@ const WaitlistPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <Button
+        variant="ghost"
+        size="sm"
+        className="absolute top-4 left-4 text-white hover:text-white/80"
+        onClick={() => navigate(-1)}
+      >
+        <ArrowLeft className="mr-2 h-4 w-4" />
+        Back
+      </Button>
+
       <div className="container mx-auto px-4 py-20 md:py-32">
         <div className="max-w-2xl mx-auto text-center space-y-8">
           <div className="space-y-4">
